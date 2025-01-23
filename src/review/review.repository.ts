@@ -48,6 +48,11 @@ export class ReviewRepository {
     return count;
   }
 
+  @countModelsByField(Review)
+  async countReviewsByReviewerId(reviewerIdDTO: ReviewerIdDTO, count?: number) {
+    return count;
+  }
+
   @searchModelsByIdField(Review, searchReviewsByPackageIdConfig)
   async searchReviewsByPackageId(
     pid: string,

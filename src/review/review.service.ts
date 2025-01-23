@@ -77,6 +77,10 @@ export class ReviewService {
     return await this.reviewRepository.countReviewsByPackageId(packageIdDTO);
   }
 
+  async countReviewsByReviewerId(reviewerIdDTO: ReviewerIdDTO) {
+    return await this.reviewRepository.countReviewsByReviewerId(reviewerIdDTO);
+  }
+
   async searchReviewsByPackageId(pid: string, search: string, page: number) {
     return await this.reviewRepository.searchReviewsByPackageId(
       pid,

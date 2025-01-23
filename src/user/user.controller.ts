@@ -88,6 +88,16 @@ export class UserController {
     }
   }
 
+  @Get("/:uid/reviews")
+  async countUserReviews(@Param("uid") uid: string, @Res() response: Response) {
+    try {
+      const count = await this.userService.countUserReviews(uid);
+      return response.status(200).json({ count });
+    } catch (error: any) {
+      return response.status(500).send({ message: error.message });
+    }
+  }
+
   @Get("/username/:username")
   async getUserByUsername(
     @Param("username") username: string,

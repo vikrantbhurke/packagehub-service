@@ -43,8 +43,13 @@ export class ReviewController {
     @Res() response: Response
   ) {
     try {
-      await this.reviewService.createFirstReview(createFirstReviewDTO);
-      return response.status(201).send({ message: "First Review created." });
+      const review = await this.reviewService.createFirstReview(
+        createFirstReviewDTO
+      );
+
+      if (!review) return response.status(404).send("Review not found.");
+      const reviewDTO = this.reviewUtility.convertReviewToReviewDTO(review);
+      return response.status(201).json(reviewDTO);
     } catch (error: any) {
       let message;
       if (error.code === 11000) message = "Review already exists.";
@@ -60,8 +65,13 @@ export class ReviewController {
     @Res() response: Response
   ) {
     try {
-      await this.reviewService.createNextReview(createNextReviewDTO);
-      return response.status(201).send({ message: "Next Review created." });
+      const review = await this.reviewService.createNextReview(
+        createNextReviewDTO
+      );
+
+      if (!review) return response.status(404).send("Review not found.");
+      const reviewDTO = this.reviewUtility.convertReviewToReviewDTO(review);
+      return response.status(201).json(reviewDTO);
     } catch (error: any) {
       let message;
       if (error.code === 11000) message = "Review already exists.";

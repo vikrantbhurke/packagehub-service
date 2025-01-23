@@ -112,6 +112,12 @@ export class UserService {
     if (!user) throw new Error("User not found.");
   }
 
+  async countUserReviews(uid: string) {
+    return await this.reviewService.countReviewsByReviewerId({
+      reviewerId: uid,
+    });
+  }
+
   async getUserByUsername(usernameDTO: UsernameDTO) {
     return await this.userRepository.getUserByUsername(usernameDTO);
   }

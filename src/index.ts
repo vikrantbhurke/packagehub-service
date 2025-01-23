@@ -14,7 +14,7 @@ import { v2 as cloudinary } from "cloudinary";
 import connectDB from "./global/configurations/db.config";
 
 dotenv.config();
-
+// index file
 export const transporter = nodemailer.createTransport({
   service: "gmail",
   port: 587,
